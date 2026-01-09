@@ -54,7 +54,7 @@ public class SecurityConfigForJWT {
                                                    JWTUtil jwtUtil) throws Exception {
 
         // Authentication filter responsible for login
-        JWTAuthenticationFilter jwtAuthFilter = new JWTAuthenticationFilter(authenticationManager, jwtUtil);
+        JWTAuthenticationFilter jwtAuthFilter = new JWTAuthenticationFilter(jwtUtil, authenticationManager);
 
         // Validation filter for checking JWT in every request
         JWTValidationFilter jwtValidationFilter = new JWTValidationFilter(authenticationManager);
