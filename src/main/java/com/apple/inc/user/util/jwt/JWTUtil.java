@@ -1,4 +1,4 @@
-package com.apple.inc.user.util;
+package com.apple.inc.user.util.jwt;
 
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

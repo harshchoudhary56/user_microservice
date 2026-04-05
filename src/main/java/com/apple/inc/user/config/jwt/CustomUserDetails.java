@@ -1,4 +1,4 @@
-package com.apple.inc.user.config;
+package com.apple.inc.user.config.jwt;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

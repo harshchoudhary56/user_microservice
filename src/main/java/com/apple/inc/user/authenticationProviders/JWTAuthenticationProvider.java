@@ -1,7 +1,7 @@
 package com.apple.inc.user.authenticationProviders;
 
 import com.apple.inc.user.token.JWTAuthenticationToken;
-import com.apple.inc.user.util.JWTUtil;
+import com.apple.inc.user.util.jwt.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

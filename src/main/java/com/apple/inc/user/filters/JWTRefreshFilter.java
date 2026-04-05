@@ -1,7 +1,7 @@
 package com.apple.inc.user.filters;
 
 import com.apple.inc.user.token.JWTAuthenticationToken;
-import com.apple.inc.user.util.JWTUtil;
+import com.apple.inc.user.util.jwt.JWTUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;

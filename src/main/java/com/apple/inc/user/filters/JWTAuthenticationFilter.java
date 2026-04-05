@@ -2,7 +2,7 @@ package com.apple.inc.user.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.apple.inc.user.dto.LoginRequest;
-import com.apple.inc.user.util.JWTUtil;
+import com.apple.inc.user.util.jwt.JWTUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;

@@ -1,9 +1,9 @@
-package com.apple.inc.user.config;
+package com.apple.inc.user.config.jwt;
 
 import com.apple.inc.user.filters.JWTAuthenticationFilter;
 import com.apple.inc.user.filters.JWTRefreshFilter;
 import com.apple.inc.user.filters.JWTValidationFilter;
-import com.apple.inc.user.util.JWTUtil;
+import com.apple.inc.user.util.jwt.JWTUtil;
 import com.apple.inc.user.authenticationProviders.JWTAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
-package com.apple.inc.user.repository;
+package com.apple.inc.user.repository.jpa;
 
-import com.apple.inc.user.entities.User;
+import com.apple.inc.user.entities.jpa.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
