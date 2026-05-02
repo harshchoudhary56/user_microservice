@@ -1,29 +1,46 @@
 package com.apple.inc.user.database.mongodb;
 
 import com.apple.inc.user.constants.BeanConstants;
+import com.mongodb.reactivestreams.client.MongoClient;
+import com.mongodb.reactivestreams.client.MongoClients;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.MongoDatabaseFactory;
-import org.springframework.data.mongodb.MongoTransactionManager;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
+import org.springframework.data.mongodb.ReactiveMongoDatabaseFactory;
+import org.springframework.data.mongodb.ReactiveMongoTransactionManager;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.data.mongodb.core.SimpleReactiveMongoDatabaseFactory;
 
 @Configuration
 public class MongoDatabaseConfiguration {
 
-    @Bean(name = BeanConstants.MONGODB_DATASOURCE)
-    public MongoDatabaseFactory mongoDatabaseFactory(MongoProperties properties) {
-        return new SimpleMongoClientDatabaseFactory(properties.getUri());
+    @Value("${spring.data.mongodb.uri}")
+    private String mongoUri;
+
+    @Value("${spring.data.mongodb.database}")
+    private String databaseName;
+
+    @Bean(name = BeanConstants.MONGODB_CLIENT)
+    public MongoClient reactiveMongoClient() {
+        return MongoClients.create(mongoUri);
     }
 
-    @Bean(name = BeanConstants.MONGO_TEMPLATE)
-    public MongoTemplate mongoTemplate(@Qualifier(BeanConstants.MONGODB_DATASOURCE) MongoDatabaseFactory mongoDatabaseFactory) {
-        return new MongoTemplate(mongoDatabaseFactory);
+    @Bean(name = BeanConstants.MONGODB_DATASOURCE)
+    public ReactiveMongoDatabaseFactory reactiveMongoDatabaseFactory(
+            @Qualifier(BeanConstants.MONGODB_CLIENT) MongoClient mongoClient) {
+        return new SimpleReactiveMongoDatabaseFactory(mongoClient, databaseName);
+    }
+
+    @Bean(name = BeanConstants.REACTIVE_MONGO_TEMPLATE)
+    public ReactiveMongoTemplate reactiveMongoTemplate(
+            @Qualifier(BeanConstants.MONGODB_DATASOURCE) ReactiveMongoDatabaseFactory factory) {
+        return new ReactiveMongoTemplate(factory);
     }
 
     @Bean(name = BeanConstants.MONGODB_TRANSACTION_MANAGER)
-    public MongoTransactionManager transactionManager(@Qualifier(BeanConstants.MONGODB_DATASOURCE) MongoDatabaseFactory mongoDatabaseFactory) {
-        return new MongoTransactionManager(mongoDatabaseFactory);
+    public ReactiveMongoTransactionManager reactiveMongoTransactionManager(
+            @Qualifier(BeanConstants.MONGODB_DATASOURCE) ReactiveMongoDatabaseFactory factory) {
+        return new ReactiveMongoTransactionManager(factory);
     }
 }

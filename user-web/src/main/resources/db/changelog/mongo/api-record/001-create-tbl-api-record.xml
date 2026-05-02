@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+            http://www.liquibase.org/xml/ns/dbchangelog-ext
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!-- ════════════════════════════════════════════════════════════════
+         Changeset 1: Create tbl_api_record collection
+         ════════════════════════════════════════════════════════════════ -->
+    <changeSet id="001-create-tbl-api-record" author="school-erp">
+        <ext:createCollection collectionName="tbl_api_record">
+            <ext:options>
+                {
+                    validator: {
+                        $jsonSchema: {
+                            bsonType: "object",
+                            required: ["crid", "requestApi", "createdAt"],
+                            properties: {
+                                crid:           { bsonType: "string",  description: "Correlation/trace ID" },
+                                requestId:      { bsonType: "string",  description: "Request identifier" },
+                                requestApi:     { bsonType: "string",  description: "API method signature" },
+                                request:        { bsonType: "string",  description: "Serialized request body" },
+                                response:       { bsonType: "string",  description: "Serialized response body" },
+                                httpStatusCode: { bsonType: "string",  description: "HTTP status code" },
+                                environment:    { bsonType: "string",  description: "Active environment" },
+                                createdDate:    { bsonType: "string",  description: "Record creation timestamp" },
+                                updatedDate:    { bsonType: "string",  description: "Record update timestamp" }
+                            }
+                        }
+                    },
+                    validationLevel: "moderate",
+                    validationAction: "warn"
+                }
+            </ext:options>
+        </ext:createCollection>
+    </changeSet>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         Changeset 2: Create indexes for tbl_api_record
+         ════════════════════════════════════════════════════════════════ -->
+    <changeSet id="002-create-indexes-tbl-api-record" author="school-erp">
+        <ext:createIndex collectionName="tbl_api_record">
+            <ext:keys>{ crid: 1 }</ext:keys>
+            <ext:options>{ name: "idx_crid", unique: false }</ext:options>
+        </ext:createIndex>
+
+        <ext:createIndex collectionName="tbl_api_record">
+            <ext:keys>{ requestId: 1 }</ext:keys>
+            <ext:options>{ name: "idx_requestId" }</ext:options>
+        </ext:createIndex>
+
+        <ext:createIndex collectionName="tbl_api_record">
+            <ext:keys>{ requestApi: 1 }</ext:keys>
+            <ext:options>{ name: "idx_requestApi" }</ext:options>
+        </ext:createIndex>
+    </changeSet>
+
+</databaseChangeLog>
+

@@ -35,6 +35,7 @@
         <jwt.version>0.11.5</jwt.version>
         <gson.version>2.13.2</gson.version>
         <apache.commons.collections4.version>4.4</apache.commons.collections4.version>
+        <log-standardization.version>0.0.1-SNAPSHOT</log-standardization.version>
     </properties>
 
     <dependencyManagement>
@@ -115,6 +116,13 @@
                 <artifactId>commons-collections4</artifactId>
                 <version>${apache.commons.collections4.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.apple.inc.log</groupId>
+                <artifactId>standardization</artifactId>
+                <version>${log-standardization.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

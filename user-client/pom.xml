@@ -12,7 +12,40 @@
     <artifactId>user-client</artifactId>
     <name>user-client</name>
     <description>External API client library for other services to interact with user-service</description>
+    <version>0.0.1-SNAPSHOT</version>
+
     <dependencies>
+
+        <!-- Reactor Netty (HTTP engine) -->
+        <dependency>
+            <groupId>io.projectreactor.netty</groupId>
+            <artifactId>reactor-netty-http</artifactId>
+        </dependency>
+
+        <!-- Spring WebFlux (WebClient) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webflux</artifactId>
+        </dependency>
+
+        <!-- Eureka Client (registers & discovers services) -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <!-- Spring Cloud LoadBalancer (picks an instance from Eureka registry) -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
+        <!-- The purpose of the jackson-datatype-jsr310 dependency (which contains the JavaTimeModule) is
+        to teach Jackson how to translate modern Java 8 Date and Time objects into standard JSON strings.-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.apple.inc</groupId>
@@ -20,18 +53,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <groupId>com.apple.inc</groupId>
+            <artifactId>user-utilities</artifactId>
         </dependency>
 
         <dependency>

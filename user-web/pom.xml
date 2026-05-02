@@ -11,6 +11,7 @@
 
     <artifactId>user-web</artifactId>
     <name>web</name>
+    <version>0.0.1-SNAPSHOT</version>
     <description>Web layer with controllers, security configuration, and main application</description>
 
     <dependencies>
@@ -44,6 +45,19 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
+        </dependency>
+
+        <!-- Liquibase MongoDB Extension -->
+        <dependency>
+            <groupId>org.liquibase.ext</groupId>
+            <artifactId>liquibase-mongodb</artifactId>
+            <version>4.29.2</version>
+        </dependency>
+
+        <!-- MongoDB Sync Driver (required by Liquibase) -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
         </dependency>
 
         <dependency>
@@ -116,6 +130,10 @@
             <artifactId>user-service</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.apple.inc.log</groupId>
+            <artifactId>standardization</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
