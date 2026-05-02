@@ -11,21 +11,10 @@
 
     <artifactId>user-utilities</artifactId>
     <name>user-utilities</name>
+    <version>0.0.2-SNAPSHOT</version>
     <description>Utility classes, helper methods, and common functionality</description>
 
     <dependencies>
-
-        <!-- Spring Boot Core -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <!-- Spring Security for JWT -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
 
         <!-- Apache Commons -->
         <dependency>
@@ -62,4 +51,20 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>com.apple.inc.user.utilities</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

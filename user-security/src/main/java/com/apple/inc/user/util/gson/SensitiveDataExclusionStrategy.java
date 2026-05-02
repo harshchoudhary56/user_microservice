@@ -1,6 +1,6 @@
 package com.apple.inc.user.util.gson;
 
-import com.apple.inc.user.annotations.Sensitive;
+import com.apple.inc.user.util.annotations.Sensitive;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 

@@ -9,31 +9,41 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>user-client</artifactId>
-    <name>user-client</name>
-    <description>External API client library for other services to interact with user-service</description>
-    <dependencies>
+    <artifactId>user-service</artifactId>
+    <name>user-service</name>
+    <version>0.0.1-SNAPSHOT</version>
+    <description>Business logic layer with repositories, services, and data access configurations</description>
 
+    <dependencies>
+        <!-- Internal module dependencies -->
         <dependency>
             <groupId>com.apple.inc</groupId>
             <artifactId>user-commons</artifactId>
         </dependency>
 
         <dependency>
+            <groupId>com.apple.inc</groupId>
+            <artifactId>user-utilities</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Data & JPA -->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
         </dependency>
 
+        <!-- MongoDB driver -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
         </dependency>
 
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -49,7 +59,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Automatic-Module-Name>com.apple.inc.user.client</Automatic-Module-Name>
+                            <Automatic-Module-Name>com.apple.inc.user.service</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                 </configuration>

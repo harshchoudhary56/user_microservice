@@ -1,9 +1,9 @@
 package com.apple.inc.user.handler;
 
 import com.apple.inc.user.constants.BeanConstants;
-import com.apple.inc.user.constants.Response;
+import com.apple.inc.user.dto.Response;
 import com.apple.inc.user.dto.FieldParam;
-import com.apple.inc.user.util.concurrent.AsyncTaskExecutor;
+import com.apple.inc.user.util.AsyncTaskExecutor;
 import com.apple.inc.user.util.mapper.CustomObjectMapper;
 import com.apple.inc.user.util.threadLocal.ThreadContext;
 import com.apple.inc.user.entities.mongo.ApiRecordEntity;
@@ -36,7 +36,7 @@ public class ApiRecordHandler {
     private final IApiRecordEntityDao apiRecordEntityDao;
     private final AsyncTaskExecutor asyncTaskExecutor;
 
-    private final String environment = Optional.of(System.getenv("ENVIRONMENT"))
+    private final String environment = Optional.ofNullable(System.getenv("ENVIRONMENT"))
             .orElse(null);
 
     @Async(BeanConstants.API_RECORD_POOL)

@@ -1,6 +1,6 @@
 package com.apple.inc.user.client;
 
-import com.apple.inc.user.dto.FieldParam;
+import com.apple.inc.user.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,18 +17,18 @@ public interface UserServiceClient {
     String sampleMethod();
 
     @GetMapping("/{id}")
-    FieldParam getUserById(@PathVariable("id") Long id);
+    UserDTO getUserById(@PathVariable("id") Long id);
 
     @PostMapping("/")
-    FieldParam createUser(@RequestBody FieldParam userRequest);
+    UserDTO createUser(@RequestBody UserDTO userRequest);
 
     @PutMapping("/{id}")
-    FieldParam updateUser(@PathVariable("id") Long id, @RequestBody FieldParam userRequest);
+    UserDTO updateUser(@PathVariable("id") Long id, @RequestBody UserDTO userRequest);
 
     @DeleteMapping("/{id}")
     void deleteUser(@PathVariable("id") Long id);
 
     @GetMapping("/search")
-    List<FieldParam> searchUsers(@RequestParam(required = false) String name,
-                                 @RequestParam(required = false) String email);
+    List<UserDTO> searchUsers(@RequestParam(required = false) String name,
+                              @RequestParam(required = false) String email);
 }

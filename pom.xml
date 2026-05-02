@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.4</version>
+        <version>3.5.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -27,10 +27,10 @@
     </modules>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>25</java.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
         <mongo.java.driver>3.12.14</mongo.java.driver>
         <jwt.version>0.11.5</jwt.version>
         <gson.version>2.13.2</gson.version>
@@ -100,7 +100,7 @@
 
             <dependency>
                 <groupId>com.apple.inc</groupId>
-                <artifactId>service</artifactId>
+                <artifactId>user-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -118,12 +118,18 @@
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>school-erp-snapshots</id>
+            <name>school-erp-snapshots-local</name>
+            <url>https://trialmzh4pl.jfrog.io/artifactory/school-erp-maven-snapshot-local</url>
+        </snapshotRepository>
         <repository>
-            <id>central</id>
-            <url>https://repo.maven.apache.org/maven2</url>
+            <id>school-erp-central</id>
+            <name>school-erp-central-local</name>
+            <url>https://trialmzh4pl.jfrog.io/artifactory/school-erp-maven-release-local</url>
         </repository>
-    </repositories>
+    </distributionManagement>
 
     <build>
         <plugins>

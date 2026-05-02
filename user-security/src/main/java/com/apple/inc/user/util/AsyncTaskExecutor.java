@@ -1,4 +1,4 @@
-package com.apple.inc.user.util.concurrent;
+package com.apple.inc.user.util;
 
 import java.util.Optional;
 import java.util.concurrent.Future;

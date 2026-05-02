@@ -1,6 +1,6 @@
 package com.apple.inc.user.aspects;
 
-import com.apple.inc.user.annotations.ApiRecord;
+import com.apple.inc.user.util.annotations.ApiRecord;
 import com.apple.inc.user.entities.mongo.ApiRecordEntity;
 import com.apple.inc.user.handler.ApiRecordHandler;
 import com.apple.inc.user.util.threadLocal.ThreadContextDirectory;

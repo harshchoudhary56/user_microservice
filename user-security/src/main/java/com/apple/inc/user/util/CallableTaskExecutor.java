@@ -1,6 +1,6 @@
 package com.apple.inc.user.util;
 
-import com.apple.inc.user.excetions.POBaseException;
+import com.apple.inc.user.exceptions.POBaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.ListableBeanFactory;
@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 @Slf4j
-public class CallableTaskExecutor extends com.apple.inc.user.util.concurrent.AbstractTaskExecutor implements com.apple.inc.user.util.concurrent.AsyncTaskExecutor {
+public class CallableTaskExecutor extends AbstractTaskExecutor implements AsyncTaskExecutor {
 
     private final ThreadPoolTaskExecutor DEFAULT_EXECUTOR;
 
@@ -44,7 +44,7 @@ public class CallableTaskExecutor extends com.apple.inc.user.util.concurrent.Abs
 
     @Override
     public <T> Future<T> queue(Supplier<T> supplier, String poolId) {
-        return resolveApplicableExecutor(poolId, beanFactory, DEFAULT_EXECUTOR).submit(new com.apple.inc.user.util.concurrent.ContextAwareCallable<T>(supplier));
+        return resolveApplicableExecutor(poolId, beanFactory, DEFAULT_EXECUTOR).submit(new ContextAwareCallable<T>(supplier));
     }
 
     @Override

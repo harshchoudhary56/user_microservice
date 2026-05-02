@@ -1,6 +1,6 @@
 package com.apple.inc.user.client;
 
-import com.apple.inc.user.dto.FieldParam;
+import com.apple.inc.user.dto.UserDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -28,27 +28,27 @@ public class UserWebClient {
                 .bodyToMono(String.class);
     }
 
-    public Mono<FieldParam> getUserById(Long id) {
+    public Mono<UserDTO> getUserById(Long id) {
         return webClient.get()
                 .uri("/user/{id}", id)
                 .retrieve()
-                .bodyToMono(FieldParam.class);
+                .bodyToMono(UserDTO.class);
     }
 
-    public Mono<FieldParam> createUser(FieldParam userRequest) {
+    public Mono<UserDTO> createUser(UserDTO userRequest) {
         return webClient.post()
                 .uri("/user/")
                 .bodyValue(userRequest)
                 .retrieve()
-                .bodyToMono(FieldParam.class);
+                .bodyToMono(UserDTO.class);
     }
 
-    public Mono<FieldParam> updateUser(Long id, FieldParam userRequest) {
+    public Mono<UserDTO> updateUser(Long id, UserDTO userRequest) {
         return webClient.put()
                 .uri("/user/{id}", id)
                 .bodyValue(userRequest)
                 .retrieve()
-                .bodyToMono(FieldParam.class);
+                .bodyToMono(UserDTO.class);
     }
 
     public Mono<Void> deleteUser(Long id) {
@@ -58,7 +58,7 @@ public class UserWebClient {
                 .bodyToMono(Void.class);
     }
 
-    public Flux<FieldParam> searchUsers(String name, String email) {
+    public Flux<UserDTO> searchUsers(String name, String email) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/user/search")
@@ -66,6 +66,6 @@ public class UserWebClient {
                         .queryParamIfPresent("email", java.util.Optional.ofNullable(email))
                         .build())
                 .retrieve()
-                .bodyToFlux(FieldParam.class);
+                .bodyToFlux(UserDTO.class);
     }
 }

@@ -14,7 +14,5 @@ public class BeanConstants {
     public static final String MONGO_TEMPLATE = "mongoTemplate";
     public static final String MONGODB_TRANSACTION_MANAGER = "mongodbTransactionManager";
 
-    public static final String API_RECORD_POOL = "apiRecordPool";;
-
-
+    public static final String API_RECORD_POOL = "apiRecordPool";
 }

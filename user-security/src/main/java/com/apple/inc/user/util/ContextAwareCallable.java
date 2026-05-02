@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 import static com.apple.inc.user.constants.MDCConstants.COMMON_REQUEST_IDENTIFIER;
 
 @Slf4j
-public class ContextAwareCallable<T> extends com.apple.inc.user.util.concurrent.AbstractContextAware implements Callable<T> {
+public class ContextAwareCallable<T> extends AbstractContextAware implements Callable<T> {
 
     private Supplier<T> actualTask;
 

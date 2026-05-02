@@ -1,6 +1,6 @@
 package com.apple.inc.user.util.reflection;
 
-import com.apple.inc.user.annotations.ChecksumExclude;
+import com.apple.inc.user.util.annotations.ChecksumExclude;
 import com.apple.inc.user.dto.FieldParam;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.collections4.CollectionUtils;
