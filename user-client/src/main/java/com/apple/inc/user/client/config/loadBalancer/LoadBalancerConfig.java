@@ -1,8 +1,10 @@
 package com.apple.inc.user.client.config.loadBalancer;
 
 import com.apple.inc.user.client.config.factory.UserServiceWebClientFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.reactive.ReactiveLoadBalancer;
+import org.springframework.cloud.loadbalancer.core.ReactorServiceInstanceLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +55,7 @@ import org.springframework.core.env.Environment;
  * @see RoundRobinLoadBalancer
  * @see UserServiceWebClientFactory
  */
+@RequiredArgsConstructor
 public class LoadBalancerConfig {
 
     /**
@@ -83,15 +86,18 @@ public class LoadBalancerConfig {
      * @param environment Spring environment containing the target service ID
      * @return a {@link RoundRobinLoadBalancer} configured for the target service
      */
+
     @Bean
-    public ReactiveLoadBalancer<ServiceInstance> roundRobinLoadBalancer(
+    public ReactiveLoadBalancer<ServiceInstance> alternatingLoadBalancer(
             ServiceInstanceListSupplier supplier,
             Environment environment) {
 
         // Extract the service ID (e.g., "USER-MICROSERVICE") from the child context.
         // Spring Cloud sets this property when creating a per-service child context.
         String serviceId = environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);
+        ReactorServiceInstanceLoadBalancer roundRobinLoadBalancer = new RoundRobinLoadBalancer(supplier, serviceId);
+        ReactorServiceInstanceLoadBalancer randomLoadBalancer = new RandomLoadBalancer(serviceId, supplier);
 
-        return new RoundRobinLoadBalancer(supplier, serviceId);
+        return new AlternatingLoadBalancer(roundRobinLoadBalancer, randomLoadBalancer);
     }
 }
