@@ -41,7 +41,7 @@ public class LiquibaseMongoConfig {
     @Value("${spring.data.mongodb.uri}")
     private String mongoUri;
 
-    @Value("${spring.liquibase.mongodb.change-log:db/changelog/mongo/mongo-master-changelog.xml}")
+    @Value("${spring.liquibase.mongodb.change-log}")
     private String changeLogFile;
 
     @Bean

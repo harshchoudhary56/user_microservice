@@ -15,10 +15,10 @@ import org.springframework.data.mongodb.core.SimpleReactiveMongoDatabaseFactory;
 @Configuration
 public class MongoDatabaseConfiguration {
 
-    @Value("${spring.data.mongodb.uri}")
+    @Value("${spring.data.mongodb.uri://localhost:27017/power_school_user_dev}")
     private String mongoUri;
 
-    @Value("${spring.data.mongodb.database}")
+    @Value("${spring.data.mongodb.database:power_school_user_dev}")
     private String databaseName;
 
     @Bean(name = BeanConstants.MONGODB_CLIENT)
