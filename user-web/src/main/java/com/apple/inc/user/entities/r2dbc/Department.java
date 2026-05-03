@@ -1,14 +1,14 @@
-package com.apple.inc.user.entities.jpa;
+package com.apple.inc.user.entities.r2dbc;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import jakarta.persistence.Table;
+import org.springframework.data.relational.core.mapping.Table;
+
 @Data
-@EqualsAndHashCode(callSuper = true)
-@Entity
 @Table(name = "tbl_department")
+@EqualsAndHashCode(callSuper = true)
 public class Department extends AuditableEntity {
+
     private String name;
     private String description;
 }

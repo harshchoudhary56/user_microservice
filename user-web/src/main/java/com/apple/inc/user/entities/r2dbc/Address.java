@@ -1,19 +1,18 @@
-package com.apple.inc.user.entities.jpa;
+package com.apple.inc.user.entities.r2dbc;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@Entity
 @Table(name = "tbl_address")
 @EqualsAndHashCode(callSuper = true)
 public class Address extends AuditableEntity {
 
-    @OneToOne
-    private User user;
+    @Column("user_id")
+    private Long userId;
+
     private String street;
     private String city;
     private String state;

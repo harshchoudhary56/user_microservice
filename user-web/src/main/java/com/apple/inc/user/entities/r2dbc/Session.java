@@ -1,21 +1,23 @@
-package com.apple.inc.user.entities.jpa;
+package com.apple.inc.user.entities.r2dbc;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.time.LocalDateTime;
+
 @Data
-@EqualsAndHashCode(callSuper = true)
-@Entity
 @Table(name = "tbl_session")
+@EqualsAndHashCode(callSuper = true)
 public class Session extends AuditableEntity {
+
     private String accessToken;
     private String refreshToken;
     private LocalDateTime loginTime;
     private LocalDateTime logoutTime;
     private String deviceInfo;
-    @OneToOne
-    private User user;
+
+    @Column("user_id")
+    private Long userId;
 }
